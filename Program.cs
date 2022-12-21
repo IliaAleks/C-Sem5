@@ -1,17 +1,4 @@
-﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
-
-// [345, 897, 568, 234] -> 2
-
-// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
-
-// [3, 7, 23, 12] -> 19
-
-// [-4, -6, 89, 6] -> 0
-
-// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
-
-// [3 7 22 2 78] -> 76
-
+﻿//Task 34
 int [] createMas(int sizeMas)
 {
     int [] mas= new int [sizeMas];
@@ -46,4 +33,65 @@ int numChet(int [] mas)
 Console.WriteLine("Task 34");
 Console.WriteLine("Введите размер массива трехзначных чисел");
 int [] masiv=createMas(int.Parse(Console.ReadLine()));
-Console.WriteLine($"{numChet(masiv)}");
+Console.WriteLine($"Количество четных чисел равно = {numChet(masiv)}");
+
+//Task 36
+int [] createMas2(int sizeMas)
+{
+    int [] mas= new int [sizeMas];
+    Random rs=new Random();
+    for (int i=0; i<sizeMas; i++)
+    {
+        mas[i]=rs.Next(0, 100);
+        if (i<sizeMas-1)
+        {
+            Console.Write($"{mas[i]}, ");
+        } else
+        {
+            Console.Write($"{mas[i]}");
+            Console.WriteLine();
+        }
+    }
+    return mas;
+}
+
+int sumNechet(int [] mas)
+{
+    int num=0;
+    for (int i=0; i<mas.Length; i++)
+    {
+        if (i%2!=0)
+        {
+            num=num+mas[i];
+        }
+    }
+    return num;
+}
+Console.WriteLine("Task 36");
+Console.WriteLine("Введите размер массива: ");
+int [] masiv2=createMas2(int.Parse(Console.ReadLine()));
+Console.WriteLine($"Сумма элементов на нечетных позициях массива = {sumNechet(masiv2)}");
+
+//Task 38
+double [] mas38=new double [] {4, 99, 45.6, 78.1, 345.1, 17};
+double difMinMax (double [] masIn)
+{
+    double max=masIn[0];
+    double min=masIn[0];
+    for (int i=0; i<masIn.Length; i++)
+    {
+        if (max<masIn[i])
+            max=masIn[i];
+        if (masIn[i]<min)
+            min=masIn[i];
+        if (i<masIn.Length-1)
+            Console.Write($"{masIn[i]}, ");
+        else
+            Console.Write($"{masIn[i]}");
+    }
+    Console.WriteLine();
+    Console.WriteLine($"max={max}, min={min}");
+    return max-min;
+}
+Console.WriteLine("Task 38");
+Console.WriteLine($"Разница между минимальным и максимальным числом массива равна = {difMinMax(mas38)}");
